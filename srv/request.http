@@ -1,0 +1,256 @@
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv/$count
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv?$top=10
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv?$top=10&$skip=10
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv?$filter=CATEGORY eq 'Notebooks'&DIM_UNIT eq 'CM'
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv?$select=PRODUCT_ID,DESCRIPTION,PRICE
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv?$orderby=PRODUCT_ID desc
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv('550e8400-e29b-41d4-a716-4466554400b1')/PRODUCT_ID
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv('550e8400-e29b-41d4-a716-4466554400b1')/PRODUCT_ID/$value
+
+###
+http://localhost:4004/odata/v4/catalog/PurchaseOrderSrv?$expand=Items
+
+//assessment
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Categories?$select=CategoryName,Description
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Customers?$select=CompanyName,CustomerID,ContactName&$filter=City eq 'London'
+
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers?$filter=Fax ne null
+
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Orders?$select=CustomerID&$filter=RequiredDate gt 1997-01-01T00:00:00Z & lt 1998-01-01T00:00:00Z & Freight lt 100
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Customers?$select=CompanyName,ContactName&$filter=ContactTitle eq 'Owner'& Country eq 'Mexico','Sweden','Germany'
+
+//assessment-2
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Products/$count?$filter=Discontinued%20eq%20true
+
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Categories?$select=CategoryName,Description&$filter=startswith(CategoryName,%27Co%27)
+
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers?$select=CompanyName,City,Country,PostalCode&$filter=contains(Address,%27rue%27)&$orderby=CompanyName
+
+###
+https://services.odata.org/V4/Northwind/Northwind.svc//Customers?$select=CompanyName,Address&$filter=Orders/any(o:o/ShipVia%20eq%201)
+
+
+###
+http://localhost:4004/odata/v4/catalog/EmployeeSrv
+
+###
+POST http://localhost:4004/odata/v4/catalog/createEmployee
+Content-Type: application/json
+ 
+{
+    "input" : [{
+    "Currency_code": "INR",
+    "ID": "db5c2edc-2383-4043-91df-ad30c7f02605",
+    "accountNumber": null,
+    "bankId": null,
+    "bankName": null,
+    "email": null,
+    "gender": "F",
+    "language": null,
+    "loginName": null,
+    "nameFirst": null,
+    "nameInitials": null,
+    "nameLast": null,
+    "nameMiddle": null,
+    "phoneNumber": null,
+    "salaryAmount": null
+    },
+    {
+    "Currency_code": "USD",
+    "ID": "db5c2edc-2688-4043-91df-ae30c7e71605",
+    "accountNumber": null,
+    "bankId": null,
+    "bankName": null,
+    "email": null,
+    "gender": "F",
+    "language": null,
+    "loginName": null,
+    "nameFirst": null,
+    "nameInitials": null,
+    "nameLast": null,
+    "nameMiddle": null,
+    "phoneNumber": null,
+    "salaryAmount": null
+    }]  
+}
+
+###
+POST http://localhost:4004/odata/v4/catalog/deleteEmployee
+Content-Type: application/json
+
+{
+     "ID": "02BD2137-0890-1EEA-A6C2-BB55C19787FB"
+}
+
+###
+http://localhost:4004/odata/v4/catalog/EmployeeSrv
+
+###
+PUT http://localhost:4004/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19847FB
+Content-Type: application/json
+
+{
+     "salaryAmount": "105000.00",
+     "Currency_code": "USD"
+}
+
+###
+http://localhost:4004/odata/v4/catalog/ProductSrv
+
+###
+PUT http://localhost:4004/odata/v4/catalog/ProductSrv/550e8400-e29b-41d4-a716-446655440001
+Content-Type: application/json
+
+{
+     "PRICE" : "4499.00"
+}
+
+
+###
+http://localhost:4004/odata/v4/catalog/PurchaseItemSrv
+
+###
+PUT http://localhost:4004/odata/v4/catalog/PurchaseItemSrv/74867AD200E41EDBA5D8B0CBD35BE052
+Content-Type: application/json
+
+{
+     "GROSS_AMOUNT" : "20000.00",
+     "CURRENCY_code": "EUR"
+}
+
+
+
+###
+PUT http://localhost:4004/odata/v4/catalog/PurchaseItemSrv/74867AD200E41EDBA5D8B0CBD35A0052
+Content-Type: application/json
+
+{
+     "GROSS_AMOUNT" : "20000.00",
+     "CURRENCY_code": "USD"
+}
+
+
+
+###
+http://localhost:4004/odata/v4/catalog/AddressSrv
+
+###
+PUT http://localhost:4004/odata/v4/catalog/AddressSrv/74867AD200E41EDBA5D8B06885668052
+Content-Type: application/json 
+
+{
+     "COUNTRY" : "GB"
+}
+
+###
+http://localhost:4004/odata/v4/catalog/EmployeeSrv
+
+###
+PUT http://localhost:4004/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19847FB
+Content-Type: application/json 
+
+{
+     "phoneNumber": "+91 9898796789"
+}
+
+###
+GET http://localhost:4004/odata/v4/catalog/getHighestSalariedEmployees()
+
+
+###
+GET http://localhost:4004/odata/v4/catalog/getHeighestPricedProduct()
+
+###
+GET http://localhost:4004/odata/v4/catalog/EmployeeSrv
+
+###
+POST http://localhost:4004/odata/v4/catalog/EmployeeSrv
+Content-Type: application/json
+
+{
+      "Currency_code": "USD",
+      "ID": "02BD2137-0890-1EEA-A6C2-BB55C19787Fh",
+      "accountNumber": "111222333",
+      "bankId": "510000655",
+      "bankName": "My Bank of Antioch",
+      "email": "sally.spring@itelo.info",
+      "gender": "F",
+      "language": "E",
+      "loginName": "SPRINGS",
+      "nameFirst": "Sally",
+      "nameInitials": null,
+      "nameLast": "Spring",
+      "nameMiddle": null,
+      "phoneNumber": "+1 224 374 524",
+      "salaryAmount": "55549.00"
+}
+
+###
+
+
+###
+POST http://localhost:4004/odata/v4/catalog/PurchaseOrderSrv/74867AD200E41EDBA5D8B0C98DC74052/discountPrice
+Content-Type: application/json
+ 
+{}
+ 
+###
+GET http://localhost:4004/odata/v4/catalog/PurchaseOrderSrv/74867AD200E41EDBA5D8B0C98DC74052/largestOrder()
+Content-Type: application/json
+
+{}
+
+###
+POST http://localhost:4004/odata/v4/catalog/ProductSrv/74867AD200E41EDBA5D8B06B26EB4052/increasePrice
+Content-Type: application/json
+
+{}
+
+
+###
+http://localhost:4004/odata/v4/catalog/EmployeeSrv
+
+
+###
+POST http://localhost:4004/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C197E7FB/increasedSalary
+Content-Type: application/json
+ 
+{}
+ 
+###
+GET http://localhost:4004/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C197E7FB/highestPaid()
+Content-Type: application/json
+
+{}
+
+
+###
+GET http://localhost:4004/odata/v4/catalog/getUtilities()
+
+
