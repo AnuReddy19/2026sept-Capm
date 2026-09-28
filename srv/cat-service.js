@@ -13,7 +13,7 @@ module.exports = cds.service.impl(async function () {
     //.on() : performing db operations
     //.after() : to save / close connections
 
-   /* this.on('createEmployee', async (request, response) => {
+    this.on('createEmployee', async (request, response) => {
         //Step-2 : Get the data which is coming from the API 
         const empData = request.data;
 
@@ -36,7 +36,7 @@ module.exports = cds.service.impl(async function () {
 
         //Step - 5 : Return the data
         return returnData;
-    })*/
+    })
 
     //Inserting Multiple Values at a time
     this.on('createEmployee', async(request, response) =>{
