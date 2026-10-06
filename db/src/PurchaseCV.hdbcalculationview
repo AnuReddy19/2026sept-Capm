@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PurchaseCV" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="PurchaseCV"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="DEMOEX_DB_TRANSACTION_PURCHASEITEMS">
+    <resourceUri>DEMOEX_DB_TRANSACTION_PURCHASEITEMS</resourceUri>
+  </DataSource>
+  <DataSource id="DEMOEX_DB_MASTER_PRODUCTS">
+    <resourceUri>DEMOEX_DB_MASTER_PRODUCTS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="GROSS_AMOUNT"/>
+      <viewAttribute id="NET_AMOUNT"/>
+      <viewAttribute id="TAX_AMOUNT"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="PARENT_NODE_KEY"/>
+      <viewAttribute id="PO_ITEMS_POS"/>
+      <viewAttribute id="PRDUCT_NODE_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DEMOEX_DB_TRANSACTION_PURCHASEITEMS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="TAX_TARIF_CODE"/>
+      <viewAttribute id="MEASURE_UNIT"/>
+      <viewAttribute id="WEIGHT_MEASURE"/>
+      <viewAttribute id="WEIGHT_UNIT"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="WIDTH"/>
+      <viewAttribute id="DEPTH"/>
+      <viewAttribute id="HEIGHT"/>
+      <viewAttribute id="DIM_UNIT"/>
+      <viewAttribute id="SUPPLIERS_NODE_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DEMOEX_DB_MASTER_PRODUCTS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="GROSS_AMOUNT"/>
+      <viewAttribute id="NET_AMOUNT"/>
+      <viewAttribute id="TAX_AMOUNT"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="PARENT_NODE_KEY"/>
+      <viewAttribute id="PO_ITEMS_POS"/>
+      <viewAttribute id="PRDUCT_NODE_KEY"/>
+      <viewAttribute id="NODE_KEY_1"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="TAX_TARIF_CODE"/>
+      <viewAttribute id="MEASURE_UNIT"/>
+      <viewAttribute id="WEIGHT_MEASURE"/>
+      <viewAttribute id="WEIGHT_UNIT"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="CURRENCY_CODE_1"/>
+      <viewAttribute id="WIDTH"/>
+      <viewAttribute id="DEPTH"/>
+      <viewAttribute id="HEIGHT"/>
+      <viewAttribute id="DIM_UNIT"/>
+      <viewAttribute id="SUPPLIERS_NODE_KEY"/>
+      <viewAttribute hidden="true" id="JOIN$PRDUCT_NODE_KEY$NODE_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAX_AMOUNT" source="TAX_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODE_KEY" source="NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARENT_NODE_KEY" source="PARENT_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ITEMS_POS" source="PO_ITEMS_POS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRDUCT_NODE_KEY" source="PRDUCT_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRDUCT_NODE_KEY$NODE_KEY" source="PRDUCT_NODE_KEY"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODE_KEY_1" source="NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_ID" source="PRODUCT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPE_CODE" source="TYPE_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAX_TARIF_CODE" source="TAX_TARIF_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEASURE_UNIT" source="MEASURE_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEIGHT_MEASURE" source="WEIGHT_MEASURE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEIGHT_UNIT" source="WEIGHT_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE_1" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WIDTH" source="WIDTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPTH" source="DEPTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HEIGHT" source="HEIGHT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DIM_UNIT" source="DIM_UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUPPLIERS_NODE_KEY" source="SUPPLIERS_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRDUCT_NODE_KEY$NODE_KEY" source="NODE_KEY"/>
+    </input>
+    <joinAttribute name="JOIN$PRDUCT_NODE_KEY$NODE_KEY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="GROSS_AMOUNT"/>
+      <viewAttribute id="NET_AMOUNT"/>
+      <viewAttribute id="TAX_AMOUNT"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="PARENT_NODE_KEY"/>
+      <viewAttribute id="PO_ITEMS_POS"/>
+      <viewAttribute id="PRDUCT_NODE_KEY"/>
+      <viewAttribute id="GROSS_AMOUNT_1"/>
+      <viewAttribute id="NET_AMOUNT_1"/>
+      <viewAttribute id="TAX_AMOUNT_1"/>
+      <viewAttribute id="CURRENCY_CODE_1"/>
+      <viewAttribute id="NODE_KEY_1"/>
+      <viewAttribute id="PARENT_NODE_KEY_1"/>
+      <viewAttribute id="PO_ITEMS_POS_1"/>
+      <viewAttribute id="PRDUCT_NODE_KEY_1"/>
+      <viewAttribute id="NODE_KEY_1_1"/>
+      <viewAttribute id="PRODUCT_ID"/>
+      <viewAttribute id="TYPE_CODE"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="DESCRIPTION"/>
+      <viewAttribute id="TAX_TARIF_CODE"/>
+      <viewAttribute id="MEASURE_UNIT"/>
+      <viewAttribute id="WEIGHT_MEASURE"/>
+      <viewAttribute id="WEIGHT_UNIT"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="CURRENCY_CODE_1_1"/>
+      <viewAttribute id="WIDTH"/>
+      <viewAttribute id="DEPTH"/>
+      <viewAttribute id="HEIGHT"/>
+      <viewAttribute id="DIM_UNIT"/>
+      <viewAttribute id="SUPPLIERS_NODE_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT_1" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT_1" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAX_AMOUNT_1" source="TAX_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE_1" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODE_KEY_1" source="NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARENT_NODE_KEY_1" source="PARENT_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ITEMS_POS_1" source="PO_ITEMS_POS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRDUCT_NODE_KEY_1" source="PRDUCT_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODE_KEY_1_1" source="NODE_KEY_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE_1_1" source="CURRENCY_CODE_1"/>
+    </input>
+    <rankingFilter type="RANK" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="PRICE"/>
+      <order byViewAttributeName="PRICE" direction="ASC"/>
+      <rankThreshold/>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="GROSS_AMOUNT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="GROSS_AMOUNT"/>
+    </attribute>
+    <attribute id="NET_AMOUNT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="NET_AMOUNT"/>
+    </attribute>
+    <attribute id="TAX_AMOUNT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAX_AMOUNT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TAX_AMOUNT"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="CURRENCY_CODE"/>
+    </attribute>
+    <attribute id="NODE_KEY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_KEY"/>
+      <keyMapping columnObjectName="Rank_1" columnName="NODE_KEY"/>
+    </attribute>
+    <attribute id="PARENT_NODE_KEY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_NODE_KEY"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PARENT_NODE_KEY"/>
+    </attribute>
+    <attribute id="PO_ITEMS_POS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_ITEMS_POS"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PO_ITEMS_POS"/>
+    </attribute>
+    <attribute id="PRDUCT_NODE_KEY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRDUCT_NODE_KEY"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PRDUCT_NODE_KEY"/>
+    </attribute>
+    <attribute id="GROSS_AMOUNT_1" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GROSS_AMOUNT_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="GROSS_AMOUNT_1"/>
+    </attribute>
+    <attribute id="NET_AMOUNT_1" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NET_AMOUNT_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="NET_AMOUNT_1"/>
+    </attribute>
+    <attribute id="TAX_AMOUNT_1" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAX_AMOUNT_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TAX_AMOUNT_1"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE_1" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="CURRENCY_CODE_1"/>
+    </attribute>
+    <attribute id="NODE_KEY_1" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_KEY_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="NODE_KEY_1"/>
+    </attribute>
+    <attribute id="PARENT_NODE_KEY_1" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_NODE_KEY_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PARENT_NODE_KEY_1"/>
+    </attribute>
+    <attribute id="PO_ITEMS_POS_1" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_ITEMS_POS_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PO_ITEMS_POS_1"/>
+    </attribute>
+    <attribute id="PRDUCT_NODE_KEY_1" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRDUCT_NODE_KEY_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PRDUCT_NODE_KEY_1"/>
+    </attribute>
+    <attribute id="NODE_KEY_1_1" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_KEY_1_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="NODE_KEY_1_1"/>
+    </attribute>
+    <attribute id="PRODUCT_ID" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_ID"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PRODUCT_ID"/>
+    </attribute>
+    <attribute id="TYPE_CODE" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYPE_CODE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TYPE_CODE"/>
+    </attribute>
+    <attribute id="CATEGORY" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CATEGORY"/>
+      <keyMapping columnObjectName="Rank_1" columnName="CATEGORY"/>
+    </attribute>
+    <attribute id="DESCRIPTION" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESCRIPTION"/>
+      <keyMapping columnObjectName="Rank_1" columnName="DESCRIPTION"/>
+    </attribute>
+    <attribute id="TAX_TARIF_CODE" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAX_TARIF_CODE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="TAX_TARIF_CODE"/>
+    </attribute>
+    <attribute id="MEASURE_UNIT" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MEASURE_UNIT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="MEASURE_UNIT"/>
+    </attribute>
+    <attribute id="WEIGHT_MEASURE" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEIGHT_MEASURE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="WEIGHT_MEASURE"/>
+    </attribute>
+    <attribute id="WEIGHT_UNIT" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEIGHT_UNIT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="WEIGHT_UNIT"/>
+    </attribute>
+    <attribute id="PRICE" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRICE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="PRICE"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE_1_1" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE_1_1"/>
+      <keyMapping columnObjectName="Rank_1" columnName="CURRENCY_CODE_1_1"/>
+    </attribute>
+    <attribute id="WIDTH" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WIDTH"/>
+      <keyMapping columnObjectName="Rank_1" columnName="WIDTH"/>
+    </attribute>
+    <attribute id="DEPTH" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEPTH"/>
+      <keyMapping columnObjectName="Rank_1" columnName="DEPTH"/>
+    </attribute>
+    <attribute id="HEIGHT" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HEIGHT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="HEIGHT"/>
+    </attribute>
+    <attribute id="DIM_UNIT" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DIM_UNIT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="DIM_UNIT"/>
+    </attribute>
+    <attribute id="SUPPLIERS_NODE_KEY" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SUPPLIERS_NODE_KEY"/>
+      <keyMapping columnObjectName="Rank_1" columnName="SUPPLIERS_NODE_KEY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-74" y="462"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="282" y="462"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="101" y="315"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="315" y="36"/>
+      <rectangleSize width="217"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-49" y="14"/>
+      <rectangleSize width="233"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="203"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

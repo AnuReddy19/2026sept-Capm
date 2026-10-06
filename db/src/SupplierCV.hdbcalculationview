@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SupplierCV" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SupplierCV"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="DEMOEX_DB_MASTER_BUSINESSPARTNERS">
+    <resourceUri>DEMOEX_DB_MASTER_BUSINESSPARTNERS</resourceUri>
+  </DataSource>
+  <DataSource id="DEMOEX_DB_MASTER_ADDRESSES">
+    <resourceUri>DEMOEX_DB_MASTER_ADDRESSES</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="BP_ROLE"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="MOBILE"/>
+      <viewAttribute id="FAX"/>
+      <viewAttribute id="WEB"/>
+      <viewAttribute id="BP_ID"/>
+      <viewAttribute id="COMPANY_NAME"/>
+      <viewAttribute id="AD_NODE_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DEMOEX_DB_MASTER_BUSINESSPARTNERS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="STREET"/>
+      <viewAttribute id="POSTAL_CODE"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="BUILDING"/>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="ADDRESS_TYPE"/>
+      <viewAttribute id="VAL_START"/>
+      <viewAttribute id="VAL_END"/>
+      <viewAttribute id="LATITUDE"/>
+      <viewAttribute id="LONGITUDE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DEMOEX_DB_MASTER_ADDRESSES"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="NODE_KEY"/>
+      <viewAttribute id="BP_ROLE"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="MOBILE"/>
+      <viewAttribute id="FAX"/>
+      <viewAttribute id="WEB"/>
+      <viewAttribute id="BP_ID"/>
+      <viewAttribute id="COMPANY_NAME"/>
+      <viewAttribute id="AD_NODE_KEY"/>
+      <viewAttribute hidden="true" id="JOIN$AD_NODE_KEY$NODE_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODE_KEY" source="NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_ROLE" source="BP_ROLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MOBILE" source="MOBILE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FAX" source="FAX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEB" source="WEB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BP_ID" source="BP_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMPANY_NAME" source="COMPANY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AD_NODE_KEY" source="AD_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AD_NODE_KEY$NODE_KEY" source="AD_NODE_KEY"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AD_NODE_KEY$NODE_KEY" source="NODE_KEY"/>
+    </input>
+    <joinAttribute name="JOIN$AD_NODE_KEY$NODE_KEY"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="NODE_KEY" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_KEY"/>
+      <keyMapping columnObjectName="Join_1" columnName="NODE_KEY"/>
+    </attribute>
+    <attribute id="BP_ROLE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BP_ROLE"/>
+      <keyMapping columnObjectName="Join_1" columnName="BP_ROLE"/>
+    </attribute>
+    <attribute id="EMAIL" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="MOBILE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MOBILE"/>
+      <keyMapping columnObjectName="Join_1" columnName="MOBILE"/>
+    </attribute>
+    <attribute id="FAX" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FAX"/>
+      <keyMapping columnObjectName="Join_1" columnName="FAX"/>
+    </attribute>
+    <attribute id="WEB" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEB"/>
+      <keyMapping columnObjectName="Join_1" columnName="WEB"/>
+    </attribute>
+    <attribute id="BP_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BP_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="BP_ID"/>
+    </attribute>
+    <attribute id="COMPANY_NAME" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMPANY_NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="COMPANY_NAME"/>
+    </attribute>
+    <attribute id="AD_NODE_KEY" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AD_NODE_KEY"/>
+      <keyMapping columnObjectName="Join_1" columnName="AD_NODE_KEY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-77" y="372"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="272" y="372"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="95" y="243"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="198"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="194"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

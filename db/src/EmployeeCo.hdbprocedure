@@ -1,0 +1,17 @@
+PROCEDURE "EmployeeCo"(
+    IN GENDER STRING,
+    OUT EMPCOUNT INTEGER
+ )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic
+   *************************************/
+
+   SELECT COUNT(*) INTO EMPCOUNT
+   FROM "DEMOEX_DB_MASTER_EMPLOYEES"
+   WHERE "GENDER" = GENDER;
+END
