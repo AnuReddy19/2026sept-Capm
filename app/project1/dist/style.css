@@ -1,0 +1,13 @@
+.sapMDialog {
+    width: 1000px !important;
+    max-width: 1000px !important;
+    height: 700px !important;
+}
+/* .sapMLabel {
+    font-weight: bold !important;
+    color: black;
+} */
+
+/* button[id*="btnAdapt"] {
+    display: none !important;
+} */

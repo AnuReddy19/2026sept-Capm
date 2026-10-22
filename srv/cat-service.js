@@ -86,7 +86,7 @@ module.exports = cds.service.impl(async function () {
         const {
             ID,
             nameInitials,
-            Currency_Code
+            CURRENCY_code
         } = request.data;
 
         try {
@@ -94,7 +94,7 @@ module.exports = cds.service.impl(async function () {
 
             await objTransaction.update(EmployeeSrv).with({
                 nameInitials: nameInitials,
-                Currency_Code: Currency_Code
+                CURRENCY_code: CURRENCY_code
             }).where({
                 ID: ID
             })
@@ -411,5 +411,154 @@ module.exports = cds.service.impl(async function () {
     })
 
 
+    this.on('createPurchaseOrders', async (request, response) => {
+        //Step-2 : Get the data which is coming from the API 
+        const purData = request.data;
+
+        //Step - 3 : Instantiate the transaction object
+        const objTransaction = cds.tx(request);
+
+        //Step - 4 : Insert the record into databse
+        let returnData = await objTransaction.run([
+            INSERT.into(PurchaseOrderSrv).entries(purDatatData)
+        ]).then((resolve, reject) => {
+            if (typeof (resolve) !== undefined) {
+                return request.data
+            } else {
+                request.error(500, "Error in inserting data into the database");
+
+            }
+        }).catch(err => {
+            request.error("There is an error : ", err.toString())
+        })
+
+        //Step - 5 : Return the data
+        return returnData;
+    })
+
+    this.on('updatePO', async(request, response) =>{
+        const{
+            NODE_KEY,
+            GROSS_AMOUNT,
+            NET_AMOUNT,
+            TAX_AMOUNT,
+            CURRENCY_code,
+            PO_ID,
+            PARTNER_NODE_KEY,
+            LIFECYCLE_STATUS,
+            OVERALL_STATUS
+        } = request.data;
+        try {
+            const objTransaction = cds.tx(request);
+            await objTransaction.update(PurchaseOrderSrv).with({
+                GROSS_AMOUNT : GROSS_AMOUNT,
+                NET_AMOUNT : NET_AMOUNT,
+                TAX_AMOUNT : TAX_AMOUNT,
+                CURRENCY_code: CURRENCY_code,
+                PO_ID : PO_ID,
+                PARTNER_NODE_KEY : PARTNER_NODE_KEY,
+                LIFECYCLE_STATUS : LIFECYCLE_STATUS,
+                OVERALL_STATUS : OVERALL_STATUS
+            }).where({
+                NODE_KEY : NODE_KEY,
+            })
+            return "Successfully Updated..";
+        } catch(error) {
+            request.error("Error: ",error)
+        }
+    })
+ 
+    this.on('deletePO', async(request, response) =>{
+        const{
+            NODE_KEY
+        } = request.data;
+        try {
+            const objTransaction = cds.tx(request);
+            await objTransaction.delete(PurchaseOrderSrv).where({
+                NODE_KEY : NODE_KEY
+            })
+            return "Successfully Deleted..";
+        } catch(error) {
+            request.error("Error: ",error)
+        }
+    })
+ 
+
+
+    this.on('createPurchaseItems', async (request, response) => {
+        //Step-2 : Get the data which is coming from the API 
+        const purIData = request.data;
+
+        //Step - 3 : Instantiate the transaction object
+        const objTransaction = cds.tx(request);
+
+        //Step - 4 : Insert the record into databse
+        let returnData = await objTransaction.run([
+            INSERT.into(PurchaseItemSrv).entries(purIData)
+        ]).then((resolve, reject) => {
+            if (typeof (resolve) !== undefined) {
+                return request.data
+            } else {
+                request.error(500, "Error in inserting data into the database");
+
+            }
+        }).catch(err => {
+            request.error("There is an error : ", err.toString())
+        })
+
+        //Step - 5 : Return the data
+        return returnData;
+    })
+
+
+    this.on('updatePI', async(request, response) =>{
+        const{
+            NODE_KEY,
+            PARENT_NODE_KEY,
+            PO_ITEMS_POS,
+            PRDUCT_NODE_KEY,
+            GROSS_AMOUNT,
+            NET_AMOUNT,
+            TAX_AMOUNT,
+            CURRENCY_code
+        } = request.data;
+        try {
+            const objTransaction = cds.tx(request);
+            await objTransaction.update(PurchaseItemSrv).with({
+                PARENT_NODE_KEY : PARENT_NODE_KEY,
+                PO_ITEMS_POS : PO_ITEMS_POS,
+                PRDUCT_NODE_KEY : PRDUCT_NODE_KEY,
+                GROSS_AMOUNT : GROSS_AMOUNT,
+                NET_AMOUNT : NET_AMOUNT,
+                TAX_AMOUNT : TAX_AMOUNT,
+                CURRENCY_code: CURRENCY_code
+            }).where({
+                NODE_KEY : NODE_KEY,
+            })
+            return "Successfully Updated..";
+        } catch(error) {
+            request.error("Error: ",error)
+        }
+    })
+
+    this.on('deletePI', async(request, response) =>{
+        const{
+            NODE_KEY
+        } = request.data;
+        try {
+            const objTransaction = cds.tx(request);
+            await objTransaction.delete(PurchaseItemSrv).where({
+                NODE_KEY : NODE_KEY
+            })
+            return "Successfully Deleted..";
+        } catch(error) {
+            request.error("Error: ",error)
+        }
+
+
+    })
+
+
+    
 
 })

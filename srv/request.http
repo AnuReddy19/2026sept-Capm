@@ -253,3 +253,19 @@ Content-Type: application/json
 ###
 GET http://localhost:4004/odata/v4/catalog/getUtilities()
 
+
+
+###
+POST http://localhost:4004/odata/v4/catalog/createPurchaseItems
+Content-Type: application/json 
+
+{
+    "NODE_KEY": "74867AD200E41EDBA5D8B0C98DC28053",
+    "PARENT_NODE_KEY": "74867AD200E41EDBA5D8B0C98DC28052",
+    "PO_ITEMS_POS": 10,
+    "PRDUCT_NODE_KEY": "74867AD200E41EDBA5D8B06885AB4052",
+    "GROSS_AMOUNT": 391.39,
+    "NET_AMOUNT": 329.00,
+    "TAX_AMOUNT": 62.39,
+    "CURRENCY_code": "EUR"
+}
